@@ -45,7 +45,6 @@ using PublisherDomain;
 // using PubContext context = new PubContext();
 // context.Database.EnsureCreated();
 
-// GetAuthors();
 // AddAuthor();
 // GetAuthors();
 
@@ -53,6 +52,9 @@ using PublisherDomain;
 // GetAuthorsWithBooks();
 
 var _context = new PubContext();
+
+GetAuthors();
+
 // Or via DbContext OnConfiguring(...)
 //_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking
 // use DbSet.AsTracking() for special queries that needs to be tracked 
@@ -70,11 +72,19 @@ var _context = new PubContext();
 
 
 void GetAuthors() {
-    using var context = new PubContext();
-    var authorList = context.Authors.ToList();
-    foreach (var author in authorList) {
-        Console.WriteLine(author.FirstName + " " + author.LastName);
-    }
+    //var authors = _context.Authors.ToList();
+
+    // Loging active now
+    // Parameters are by default protected for logging
+    // See: EnableSensitiveDataLogging
+    var name = "JeePeeTee";
+    var authors = _context.Authors.Where(w=>w.FirstName == name).ToList();
+
+    // using var context = new PubContext();
+    // var authorList = context.Authors.ToList();
+    // foreach (var author in authorList) {
+    //     Console.WriteLine(author.FirstName + " " + author.LastName);
+    // }
 }
 
 void AddAuthor() {

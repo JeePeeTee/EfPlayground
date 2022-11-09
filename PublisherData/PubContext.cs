@@ -35,9 +35,12 @@
 
 #region usings
 
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.SqlServer.Update.Internal;
 using Microsoft.EntityFrameworkCore.Update;
+using Microsoft.Extensions.Logging;
 using PublisherDomain;
 
 #endregion
@@ -52,7 +55,14 @@ public class PubContext : DbContext {
         //base.OnConfiguring(optionsBuilder);
 
         optionsBuilder
-            .UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=PubDatabase;Trusted_Connection=True");
+            .UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=PubDatabase;Trusted_Connection=True")
+            // Hack: https://learn.microsoft.com/en-us/ef/core/logging-events-diagnostics/simple-logging
+            .LogTo(
+                log => Debug.WriteLine(log),
+                new[] {DbLoggerCategory.Database.Command.Name}, 
+                LogLevel.Information)
+            .EnableSensitiveDataLogging(Debugger.IsAttached);
+        
         // No tracking active to improve performance
         // Hack: https://learn.microsoft.com/en-us/ef/core/querying/tracking
         //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
