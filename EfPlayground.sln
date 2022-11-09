@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfPlayground", "EfPlayground\EfPlayground.csproj", "{99EB090E-EB80-4785-B1AA-72D0F856B95A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublisherData", "PublisherData\PublisherData.csproj", "{0CD767AF-7520-4DE5-91F0-C657B38F303F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublisherDomain", "PublisherDomain\PublisherDomain.csproj", "{226E753B-920D-477C-8357-2174870FD573}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99EB090E-EB80-4785-B1AA-72D0F856B95A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99EB090E-EB80-4785-B1AA-72D0F856B95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99EB090E-EB80-4785-B1AA-72D0F856B95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99EB090E-EB80-4785-B1AA-72D0F856B95A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CD767AF-7520-4DE5-91F0-C657B38F303F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CD767AF-7520-4DE5-91F0-C657B38F303F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD767AF-7520-4DE5-91F0-C657B38F303F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CD767AF-7520-4DE5-91F0-C657B38F303F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{226E753B-920D-477C-8357-2174870FD573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{226E753B-920D-477C-8357-2174870FD573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{226E753B-920D-477C-8357-2174870FD573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{226E753B-920D-477C-8357-2174870FD573}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
