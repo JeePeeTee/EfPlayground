@@ -37,9 +37,7 @@
 
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.SqlServer.Update.Internal;
-using Microsoft.EntityFrameworkCore.Update;
 using Microsoft.Extensions.Logging;
 using PublisherDomain;
 
@@ -51,23 +49,24 @@ public class PubContext : DbContext {
     public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-        //base.OnConfiguring(optionsBuilder);
+    private SqlServerModificationCommandBatch CheckMe { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         optionsBuilder
             .UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=PubDatabase;Trusted_Connection=True")
             // Hack: https://learn.microsoft.com/en-us/ef/core/logging-events-diagnostics/simple-logging
             .LogTo(
                 log => Debug.WriteLine(log),
-                new[] {DbLoggerCategory.Database.Command.Name}, 
+                new[] { DbLoggerCategory.Database.Command.Name },
                 LogLevel.Information)
             .EnableSensitiveDataLogging(Debugger.IsAttached);
-        
+
         // No tracking active to improve performance
         // Hack: https://learn.microsoft.com/en-us/ef/core/querying/tracking
         //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     }
-    
-    private SqlServerModificationCommandBatch CheckMe { get; set; }
-}
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        modelBuilder.Entity<Author>().OwnsOne(a => a.Name);
+    }
+}

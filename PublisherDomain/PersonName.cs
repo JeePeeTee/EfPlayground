@@ -33,17 +33,9 @@
 
 #endregion
 
-namespace PublisherDomain {
-    public class Author {
-        public Author() {
-            Books = new List<Book>();
-            Name = new PersonName();
-        }
-
-        public int Id { get; set; }
-
-        // See OnModelCreating how to deal with this type...
-        public PersonName Name { get; set; }
-        public List<Book> Books { get; set; }
-    }
+public class PersonName {
+    public string First { get; set; }
+    public string Last { get; set; }
+    public string Full => $"{First} {Last}";
+    public string Reverse => $"{Last}, {First}";
 }
